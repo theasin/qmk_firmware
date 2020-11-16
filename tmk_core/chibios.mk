@@ -39,6 +39,7 @@ endif
 include $(STARTUP_MK)
 # HAL-OSAL files (optional).
 include $(CHIBIOS)/os/hal/hal.mk
+include $(CHIBIOS_CONTRIB)/os/hal/hal.mk
 
 ifeq ("$(PLATFORM_NAME)","")
 	PLATFORM_NAME = platform
@@ -84,6 +85,10 @@ ifeq ("$(wildcard $(BOARD_MK))","")
 endif
 
 # Bootloader address
+ifdef SN32_BOOTLOADER_ADDRESS
+    OPT_DEFS += -DSN32_BOOTLOADER_ADDRESS=$(SN32_BOOTLOADER_ADDRESS)
+endif
+
 ifdef STM32_BOOTLOADER_ADDRESS
     OPT_DEFS += -DSTM32_BOOTLOADER_ADDRESS=$(STM32_BOOTLOADER_ADDRESS)
 endif
@@ -207,7 +212,9 @@ CHIBISRC = $(STARTUPSRC) \
        $(PORTSRC) \
        $(OSALSRC) \
        $(HALSRC) \
+       $(HALSRC_CONTRIB) \
        $(PLATFORMSRC) \
+       $(PLATFORMSRC_CONTRIB) \
        $(BOARDSRC) \
        $(STREAMSSRC) \
        $(CHIBIOS)/os/various/syscalls.c \
@@ -224,8 +231,8 @@ EXTRAINCDIRS += $(CHIBIOS)/os/license $(CHIBIOS)/os/oslib/include \
          $(TOP_DIR)/platforms/chibios/boards/common/configs \
          $(HALCONFDIR) $(CHCONFDIR) \
          $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
-         $(HALINC) $(PLATFORMINC) $(BOARDINC) $(TESTINC) \
-         $(STREAMSINC) $(CHIBIOS)/os/various $(COMMON_VPATH)
+         $(HALINC) $(HALINC_CONTRIB) $(PLATFORMINC) $(PLATFORMINC_CONTRIB) $(BOARDINC) $(TESTINC) \
+         $(STREAMSINC) $(CHIBIOS)/os/various $(CHIBIOS_CONTRIB)/os/various $(COMMON_VPATH)
 
 #
 # ChibiOS-Contrib
