@@ -1,4 +1,4 @@
-#include "effects/rainbow_reactive_simple/rainbow_reactive_simple.h"
+#include "led/rainbow_reactive_simple/rainbow_reactive_simple.h"
 
 static HSV RAINBOW_REACTIVE_SIMPLE_math(HSV hsv, uint8_t i, uint8_t time, uint16_t offset) {
     hsv.h = g_led_config.point[i].x - time;
