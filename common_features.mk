@@ -273,7 +273,7 @@ endif
 endif
 
 RGB_MATRIX_ENABLE ?= no
-VALID_RGB_MATRIX_TYPES := AW20216 IS31FL3731 IS31FL3733 IS31FL3737 IS31FL3741 SN32F248B WS2812 custom
+VALID_RGB_MATRIX_TYPES := AW20216 IS31FL3731 IS31FL3733 IS31FL3737 IS31FL3741 SN32F24xx WS2812 custom
 
 ifeq ($(strip $(RGB_MATRIX_ENABLE)), yes)
     ifeq ($(filter $(RGB_MATRIX_DRIVER),$(VALID_RGB_MATRIX_TYPES)),)
@@ -329,10 +329,10 @@ endif
         QUANTUM_LIB_SRC += i2c_master.c
     endif
 
-    ifeq ($(strip $(RGB_MATRIX_DRIVER)), SN32F248B)
-        OPT_DEFS += -DSN32F248B
+    ifeq ($(strip $(RGB_MATRIX_DRIVER)), SN32F24xx)
+        OPT_DEFS += -DSN32F24xx
         COMMON_VPATH += $(DRIVER_PATH)/sn32
-        SRC += rgb_matrix_sn32f248b.c
+        SRC += rgb_matrix_sn32f24xx.c
     endif
 
     ifeq ($(strip $(RGB_MATRIX_DRIVER)), WS2812)
