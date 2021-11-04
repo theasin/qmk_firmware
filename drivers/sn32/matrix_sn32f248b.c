@@ -300,19 +300,7 @@ void matrix_init(void) {
     SN_CT16B1->MR24 = 0xFF;
 
     // Set prescale value
-    if (SystemCoreClock > 24000000)
-    {
-        SN_CT16B1->PRE = 0x10;
-    }
-    else if (SystemCoreClock > 12000000)
-    {
-        SN_CT16B1->PRE = 0x08;
-    }
-    else
-    {
-        SN_CT16B1->PRE = 0x02;
-    }
-
+    SN_CT16B1->PRE = 0x10;
 
     //Set CT16B1 as the up-counting mode.
 	SN_CT16B1->TMRCTRL = (mskCT16_CRST);
@@ -402,7 +390,9 @@ OSAL_IRQ_HANDLER(SN32_CT16B1_HANDLER) {
         // Read the key matrix
         for (uint8_t row_index = 0; row_index < MATRIX_ROWS; row_index++) {
             // Enable the row
-            writePinLow(row_pins[row_index]);
+            for (int i = 0; i < 32; i++) {
+                writePinLow(row_pins[row_index]);
+            }
 
             for (uint8_t col_index = 0; col_index < MATRIX_COLS; col_index++) {
                 // Check row pin state

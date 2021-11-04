@@ -28,4 +28,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LED_MATRIX_ROW_PINS { B15, B14, B13,  C1,  C0, C15,  C5,  C4, C3, C8, C7, C6, C11, C10, C9 }
 
 /* RGB led number */
-#define DRIVER_LED_TOTAL (61)
+#define DRIVER_LED_TOTAL 61
