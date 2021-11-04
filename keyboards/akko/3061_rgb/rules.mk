@@ -1,9 +1,6 @@
 # MCU name
 MCU = SN32F248B
 
-# BOOTLOADER = flash
-SN32_BOOTLOADER_ADDRESS = 0x1FFF0301
-
 OPT_DEFS = -O2
 
 # Build Options

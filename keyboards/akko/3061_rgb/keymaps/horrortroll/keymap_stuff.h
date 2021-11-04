@@ -170,9 +170,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     case RGB_MATRIX_CUSTOM_RAINBOW_REACTIVE_SIMPLE:
                         rgb_matrix_mode(RGB_MATRIX_CUSTOM_KITT);
                         return false;
-                    case RGB_MATRIX_CUSTOM_KITT:
-                        rgb_matrix_mode(RGB_MATRIX_CUSTOM_RANDOM_BREATH_RAINBOW);
-                        return false;
                     default:
                         rgb_matrix_mode(RGB_MATRIX_CUSTOM_CUSTOM_GRADIENT);
                         return false;
