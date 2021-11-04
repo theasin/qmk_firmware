@@ -331,8 +331,8 @@ endif
 
     ifeq ($(strip $(RGB_MATRIX_DRIVER)), SN32F24xx)
         OPT_DEFS += -DSN32F24xx
-        COMMON_VPATH += $(DRIVER_PATH)/sn32
-        SRC += rgb_matrix_sn32f24xx.c
+        COMMON_VPATH += $(DRIVER_PATH)/led
+        SRC += sn32f24xx.c
     endif
 
     ifeq ($(strip $(RGB_MATRIX_DRIVER)), WS2812)
