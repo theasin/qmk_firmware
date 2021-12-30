@@ -1,4 +1,4 @@
-#ifndef DISABLE_RGB_MATRIX_CYCLE_UP_DOWN
+#ifdef ENABLE_RGB_MATRIX_CYCLE_UP_DOWN
 RGB_MATRIX_EFFECT(CYCLE_UP_DOWN)
 #    ifdef RGB_MATRIX_CUSTOM_EFFECT_IMPLS
 
@@ -10,4 +10,4 @@ static HSV CYCLE_UP_DOWN_math(HSV hsv, uint8_t i, uint8_t time) {
 bool CYCLE_UP_DOWN(effect_params_t* params) { return effect_runner_i(params, &CYCLE_UP_DOWN_math); }
 
 #    endif  // RGB_MATRIX_CUSTOM_EFFECT_IMPLS
-#endif      // DISABLE_RGB_MATRIX_CYCLE_UP_DOWN
+#endif      // ENABLE_RGB_MATRIX_CYCLE_UP_DOWN
