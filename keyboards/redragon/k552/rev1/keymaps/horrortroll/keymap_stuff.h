@@ -205,10 +205,10 @@ void rgb_matrix_indicators_user(void) {
     }
 
     if (host_keyboard_led_state().caps_lock) {
-        rgb_matrix_set_color(50, 217, 71, 115); // assuming caps lock is at led #40
+        rgb_matrix_set_color(50, 255, 255, 255); // assuming caps lock is at led #40
     }
 
     if (host_keyboard_led_state().scroll_lock) {
-        rgb_matrix_set_color(14, 217, 71, 115); // assuming scroll lock is at led #89
+        rgb_matrix_set_color(14, 255, 255, 255); // assuming scroll lock is at led #89
     }
 }
