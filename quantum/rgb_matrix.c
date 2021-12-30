@@ -93,11 +93,15 @@ __attribute__((weak)) RGB rgb_matrix_hsv_to_rgb(HSV hsv) { return hsv_to_rgb(hsv
 #endif
 
 #if !defined(RGB_MATRIX_STARTUP_MODE)
-#    ifndef DISABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
-#        define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_CYCLE_LEFT_RIGHT
+#    ifdef OPENRGB_ENABLE
+#        define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_OPENRGB_DIRECT
 #    else
+#        ifdef ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
+#            define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_CYCLE_LEFT_RIGHT
+#        else
 // fallback to solid colors if RGB_MATRIX_CYCLE_LEFT_RIGHT is disabled in userspace
-#        define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_SOLID_COLOR
+#            define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_SOLID_COLOR
+#        endif
 #    endif
 #endif
 
@@ -222,11 +226,11 @@ bool process_rgb_matrix(uint16_t keycode, keyrecord_t *record) {
     }
 #endif  // RGB_MATRIX_KEYREACTIVE_ENABLED
 
-#if defined(RGB_MATRIX_FRAMEBUFFER_EFFECTS) && !defined(DISABLE_RGB_MATRIX_TYPING_HEATMAP)
+#if defined(RGB_MATRIX_FRAMEBUFFER_EFFECTS) && defined(ENABLE_RGB_MATRIX_TYPING_HEATMAP)
     if (rgb_matrix_config.mode == RGB_MATRIX_TYPING_HEATMAP) {
         process_rgb_matrix_typing_heatmap(record);
     }
-#endif  // defined(RGB_MATRIX_FRAMEBUFFER_EFFECTS) && !defined(DISABLE_RGB_MATRIX_TYPING_HEATMAP)
+#endif  // defined(RGB_MATRIX_FRAMEBUFFER_EFFECTS) && defined(ENABLE_RGB_MATRIX_TYPING_HEATMAP)
 
     return true;
 }
