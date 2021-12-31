@@ -33,7 +33,7 @@ static bool PIXEL_RAIN(effect_params_t* params) {
         if (off) {
             rgb_matrix_set_color(i, 0, 0, 0);
         } else {
-            HSV hsv = {random8(), qadd8(random8() >> 1, 127), rgb_matrix_config.hsv.v};
+            HSV hsv = {rand(), qadd8(rand() >> 1, 127), rgb_matrix_config.hsv.v};
             RGB rgb = rgb_matrix_hsv_to_rgb(hsv);
             rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
         }
@@ -41,7 +41,7 @@ static bool PIXEL_RAIN(effect_params_t* params) {
         return false;
     }
 
-    return rain_pixel(mod8(random8(), DRIVER_LED_TOTAL), params, random8() & 2);
+    return rain_pixel(mod8(rand(), DRIVER_LED_TOTAL), params, rand() & 2);
 }
 
 #    endif  // RGB_MATRIX_CUSTOM_EFFECT_IMPLS
