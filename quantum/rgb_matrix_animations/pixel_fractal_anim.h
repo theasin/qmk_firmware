@@ -64,7 +64,7 @@ static bool PIXEL_FRACTAL(effect_params_t* params) {
         }
 
         // Generate new random fractal columns
-        led[h][MID_COL] = led[h][MID_COL - 1] = (random8() & 3) ? false : true;
+        led[h][MID_COL] = led[h][MID_COL - 1] = (rand() & 3) ? false : true;
     }
 
     wait_timer = g_rgb_timer + interval();
