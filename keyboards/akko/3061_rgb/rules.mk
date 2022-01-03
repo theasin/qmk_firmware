@@ -57,5 +57,3 @@ KEYBOARD_SHARED_EP = yes
 # Custom RGB matrix handling
 RGB_MATRIX_ENABLE = yes
 RGB_MATRIX_DRIVER = SN32F248B
-
-LAYOUTS = 60_ansi
