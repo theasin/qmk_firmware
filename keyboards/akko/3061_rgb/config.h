@@ -1,4 +1,4 @@
-/* Copyright 2020 Adam Honse <calcprogrammer1@gmail.com>
+/* Copyright 2021 HorrorTroll <https://github.com/HorrorTroll>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0x320F
-#define PRODUCT_ID      0x5025
+#define PRODUCT_ID      0x5001
 #define DEVICE_VER      0x0001
 
 #define MANUFACTURER    Akko
