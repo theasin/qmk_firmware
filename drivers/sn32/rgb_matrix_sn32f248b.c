@@ -17,6 +17,10 @@
 #    define RGB_MATRIX_SPD_STEP 16
 #endif
 
+#if !defined(RGB_MATRIX_LED_PROCESS_LIMIT)
+#    define RGB_MATRIX_LED_PROCESS_LIMIT (LED_MATRIX_COLS + LED_MATRIX_ROW_CHANNELS)
+#endif
+
 /*
     COLS key / led
     SS8050 transistors NPN driven low
@@ -57,6 +61,7 @@ static const uint32_t freq = (RGB_MATRIX_HUE_STEP * RGB_MATRIX_SAT_STEP * RGB_MA
 static const pin_t led_row_pins[LED_MATRIX_ROWS_HW] = LED_MATRIX_ROW_PINS; // We expect a R,B,G order here
 static const pin_t led_col_pins[LED_MATRIX_COLS] = LED_MATRIX_COL_PINS;
 RGB led_state[DRIVER_LED_TOTAL]; // led state buffer
+RGB new_led_state[DRIVER_LED_TOTAL]; // led state buffer
 bool enable_pwm = false;
 
 /* PWM configuration structure. We use timer CT16B1 with 24 channels. */
@@ -353,12 +358,16 @@ void SN32F24XX_init(void) {
     shared_matrix_rgb_enable();
 }
 
-static void flush(void) {} // Due to the way we do PWM, every cycle is a flush
+void SN32F24XX_flush(void) {
+    for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+        led_state[i] = new_led_state[i];
+    }
+}
 
 void SN32F24XX_set_color(int index, uint8_t r, uint8_t g, uint8_t b) {
-            led_state[index].r = r;
-            led_state[index].b = b;
-            led_state[index].g = g;
+    new_led_state[index].r = r;
+    new_led_state[index].b = b;
+    new_led_state[index].g = g;
 }
 
 void SN32F24XX_set_color_all(uint8_t r, uint8_t g, uint8_t b) {
@@ -369,7 +378,7 @@ void SN32F24XX_set_color_all(uint8_t r, uint8_t g, uint8_t b) {
 
 const rgb_matrix_driver_t rgb_matrix_driver = {
     .init          = SN32F24XX_init,
-    .flush         = flush,
+    .flush         = SN32F24XX_flush,
     .set_color     = SN32F24XX_set_color,
     .set_color_all = SN32F24XX_set_color_all,
 };
