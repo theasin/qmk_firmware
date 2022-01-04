@@ -19,6 +19,15 @@
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 
+#include "rgb_matrix.h"
+#include "progmem.h"
+#include "config.h"
+#include "eeprom.h"
+#include <string.h>
+#include <math.h>
+
+#include <lib/lib8tion/lib8tion.h>
+
 enum layer_names {
     _BASE = 0,
     _FN = 1,
@@ -226,7 +235,12 @@ void rgb_matrix_indicators_user(void) {
             break;
     }
 
+    HSV      hsv = rgb_matrix_config.hsv;
+    uint8_t time = scale16by8(g_rgb_timer, qadd8(32, 1));
+    hsv.h        = time;
+    RGB      rgb = hsv_to_rgb(hsv);
+
     if (host_keyboard_led_state().caps_lock) {
-        rgb_matrix_set_color(30, 217, 71, 115); // assuming caps lock is at led #40
+        rgb_matrix_set_color(30, rgb.r, rgb.g, rgb.b);
     }
 }
