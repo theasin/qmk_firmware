@@ -1,10 +1,9 @@
-# AKKO 3061 World Tour Tokyo R2 RGB
+# AKKO 3061S World Tour Tokyo R2
 
-This is the 3061 World Tour Tokyo R2 RGB made by AKKO
+This is the 3061S World Tour Tokyo R2 made by AKKO
 
 * Keyboard Maintainer: [HorrorTroll](https://github.com/HorrorTroll)
-* Hardware Supported: 3061 World Tour Tokyo R2 RGB
-* Hardware Availability:
+* Hardware Supported: SN32F248B
 
 Make example for this keyboard (after setting up your build environment):
 

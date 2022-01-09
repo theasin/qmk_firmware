@@ -1,7 +1,32 @@
+/* Copyright 2021 HorrorTroll <https://github.com/HorrorTroll>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
+
+#include "rgb_matrix.h"
+#include "progmem.h"
+#include "config.h"
+#include "eeprom.h"
+#include <string.h>
+#include <math.h>
+
+#include <lib/lib8tion/lib8tion.h>
 
 enum layer_names {
     _BASE = 0,
@@ -20,6 +45,20 @@ typedef struct {
     HSV gradient_1;
     bool reflected;
 } CUSTOM_PRESETS;
+
+enum user_rgb_mode {
+    RGB_MODE_ALL,
+    RGB_MODE_NONE,
+};
+
+typedef union {
+    uint32_t raw;
+    struct {
+        uint8_t rgb_mode :8;
+    };
+} user_config_t;
+
+user_config_t user_config;
 
 enum layer_keycodes {
     //Custom Gradient control keycode
@@ -42,6 +81,20 @@ enum layer_keycodes {
     //Custom led effect keycode
     RGB_C_E,             //Cycle user effect
 };
+
+void keyboard_post_init_kb(void) {
+    user_config.raw = eeconfig_read_user();
+    switch (user_config.rgb_mode) {
+        case RGB_MODE_ALL:
+            rgb_matrix_set_flags(LED_FLAG_ALL);
+            rgb_matrix_enable_noeeprom();
+            break;
+        case RGB_MODE_NONE:
+            rgb_matrix_set_flags(LED_FLAG_NONE);
+            rgb_matrix_set_color_all(0, 0, 0);
+            break;
+    }
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     uint8_t color_adj_step = 5;
@@ -179,12 +232,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false;
-	    }
+        case RGB_TOG:
+            if (record->event.pressed) {
+                switch (rgb_matrix_get_flags()) {
+                    case LED_FLAG_ALL: {
+                        rgb_matrix_set_flags(LED_FLAG_NONE);
+                        rgb_matrix_set_color_all(0, 0, 0);
+                        user_config.rgb_mode = RGB_MODE_NONE;
+                    }
+                    break;
+                    default: {
+                        rgb_matrix_set_flags(LED_FLAG_ALL);
+                        rgb_matrix_enable_noeeprom();
+                        user_config.rgb_mode = RGB_MODE_ALL;
+                    }
+                    break;
+                }
+                eeconfig_update_user(user_config.raw);
+            }
+            return false;
+	}
     return true;
 }
 
 void rgb_matrix_indicators_user(void) {
-    switch (biton32(layer_state)) {
+    switch (get_highest_layer(layer_state)) {
         case _FN:
             rgb_matrix_set_color(14, 0, 0, 0); rgb_matrix_set_color(15, 0, 0, 0); rgb_matrix_set_color(17, 0, 0, 0); rgb_matrix_set_color(18, 0, 0, 0);
             rgb_matrix_set_color(19, 0, 0, 0); rgb_matrix_set_color(20, 0, 0, 0); rgb_matrix_set_color(21, 0, 0, 0); rgb_matrix_set_color(22, 0, 0, 0);
@@ -206,7 +278,20 @@ void rgb_matrix_indicators_user(void) {
             break;
     }
 
-    if (host_keyboard_led_state().caps_lock) {
-        rgb_matrix_set_color(28, 217, 71, 115); // assuming caps lock is at led #40
+    HSV      hsv = rgb_matrix_config.hsv;
+    uint8_t time = scale16by8(g_rgb_timer, qadd8(32, 1));
+    hsv.h        = time;
+    RGB      rgb = hsv_to_rgb(hsv);
+
+    if ((rgb_matrix_get_flags() & LED_FLAG_ALL)) {
+        if (host_keyboard_led_state().caps_lock) {
+            rgb_matrix_set_color(28, rgb.r, rgb.g, rgb.b);
+        }
+    } else {
+        if (host_keyboard_led_state().caps_lock) {
+            rgb_matrix_set_color(28, rgb.r, rgb.g, rgb.b);
+        } else {
+            rgb_matrix_set_color(28, 0, 0, 0);
+        }
     }
 }
