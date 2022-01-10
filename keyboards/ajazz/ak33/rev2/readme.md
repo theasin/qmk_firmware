@@ -1,10 +1,9 @@
-# Ajazz AK33
+# AJAZZ AK33 (Revision 2)
 
-AK33
+This is the AK33 RGB (Rev 2) made by AJAZZ
 
 Keyboard Maintainer: [Adam Honse](https://github.com/CalcProgrammer1)
-Based on Kemove DK63 by: [Stephen Peery](https://github.com/smp4488)
-Hardware Supported: SN32F248BF
+Hardware Supported: SN32F248B
 
 Make example for this keyboard (after setting up your build environment):
 
