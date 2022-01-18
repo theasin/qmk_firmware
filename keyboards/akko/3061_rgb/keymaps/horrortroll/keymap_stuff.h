@@ -19,10 +19,6 @@
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 
-#include "rgb_matrix.h"
-#include "progmem.h"
-#include "config.h"
-#include "eeprom.h"
 #include <string.h>
 #include <math.h>
 
