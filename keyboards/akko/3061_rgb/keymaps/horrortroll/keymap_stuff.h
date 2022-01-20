@@ -78,7 +78,7 @@ enum layer_keycodes {
     RGB_C_E,             //Cycle user effect
 };
 
-void keyboard_post_init_kb(void) {
+void keyboard_post_init_user(void) {
     user_config.raw = eeconfig_read_user();
     switch (user_config.rgb_mode) {
         case RGB_MODE_ALL:
@@ -261,8 +261,8 @@ void rgb_matrix_indicators_user(void) {
             rgb_matrix_set_color(37, 0, 0, 0); rgb_matrix_set_color(38, 0, 0, 0); rgb_matrix_set_color(41, 0, 0, 0); rgb_matrix_set_color(42, 0, 0, 0);
             rgb_matrix_set_color(43, 0, 0, 0); rgb_matrix_set_color(44, 0, 0, 0); rgb_matrix_set_color(45, 0, 0, 0); rgb_matrix_set_color(46, 0, 0, 0);
             rgb_matrix_set_color(47, 0, 0, 0); rgb_matrix_set_color(48, 0, 0, 0); rgb_matrix_set_color(49, 0, 0, 0); rgb_matrix_set_color(50, 0, 0, 0);
-            rgb_matrix_set_color(53, 0, 0, 0); rgb_matrix_set_color(54, 0, 0, 0); rgb_matrix_set_color(55, 0, 0, 0); rgb_matrix_set_color(56, 0, 0, 0);
-            rgb_matrix_set_color(57, 0, 0, 0); rgb_matrix_set_color(58, 0, 0, 0); rgb_matrix_set_color(59, 0, 0, 0); rgb_matrix_set_color(60, 0, 0, 0);
+            rgb_matrix_set_color(53, 0, 0, 0); rgb_matrix_set_color(55, 0, 0, 0); rgb_matrix_set_color(56, 0, 0, 0); rgb_matrix_set_color(57, 0, 0, 0);
+            rgb_matrix_set_color(59, 0, 0, 0); rgb_matrix_set_color(60, 0, 0, 0);
             break;
         case _RN:
             rgb_matrix_set_color(21, 0, 0, 0); rgb_matrix_set_color(24, 0, 0, 0); rgb_matrix_set_color(28, 0, 0, 0); rgb_matrix_set_color(35, 0, 0, 0);
@@ -283,11 +283,24 @@ void rgb_matrix_indicators_user(void) {
         if (host_keyboard_led_state().caps_lock) {
             rgb_matrix_set_color(28, rgb.r, rgb.g, rgb.b);
         }
+
+        if (keymap_config.no_gui) {
+            rgb_matrix_set_color(54, rgb.r, rgb.g, rgb.b);
+            rgb_matrix_set_color(58, rgb.r, rgb.g, rgb.b);
+        }
     } else {
         if (host_keyboard_led_state().caps_lock) {
             rgb_matrix_set_color(28, rgb.r, rgb.g, rgb.b);
         } else {
             rgb_matrix_set_color(28, 0, 0, 0);
+        }
+
+        if (keymap_config.no_gui) {
+            rgb_matrix_set_color(54, rgb.r, rgb.g, rgb.b);
+            rgb_matrix_set_color(58, rgb.r, rgb.g, rgb.b);
+        } else {
+            rgb_matrix_set_color(54, 0, 0, 0);
+            rgb_matrix_set_color(58, 0, 0, 0);
         }
     }
 }

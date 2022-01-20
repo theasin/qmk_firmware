@@ -26,6 +26,20 @@ enum layer_names {
     _FN = 1
 };
 
+enum user_rgb_mode {
+    RGB_MODE_ALL,
+    RGB_MODE_NONE,
+};
+
+typedef union {
+    uint32_t raw;
+    struct {
+        uint8_t rgb_mode :8;
+    };
+} user_config_t;
+
+user_config_t user_config;
+
 // enum layer_keycodes { };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -73,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        ├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────────┤
        │        │   │   │Cal│   │   │   │Mut│VoD│VoU│   │          │
        ├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
-       │    │    │    │                        │    │ Fn │    │    │
+       │    │GTog│    │                        │    │GTog│ Fn │    │
        └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
 */
     /*  Row:    0        1        2        3         4        5        6        7        8        9         10       11       12       13     */
@@ -82,12 +96,72 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 RESET,   _______, KC_UP,   _______,  _______, _______, _______, _______, KC_INS,  _______, KC_PSCR, RGB_VAD, RGB_VAI, RGB_HUI,
                 _______, KC_LEFT, KC_DOWN, KC_RIGHT, _______, _______, _______, _______, _______, RGB_TOG, RGB_SPD, RGB_SPI,          RGB_MOD,
                 _______,          _______, _______,  KC_CALC, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______,          _______,
-                _______, _______, _______,                            _______,                             _______, _______, _______, _______
+                _______, GUI_TOG, _______,                            _______,                             _______, GUI_TOG, _______, _______
             ),
 };
 
+void keyboard_post_init_user(void) {
+    user_config.raw = eeconfig_read_user();
+    switch (user_config.rgb_mode) {
+        case RGB_MODE_ALL:
+            rgb_matrix_set_flags(LED_FLAG_ALL);
+            rgb_matrix_enable_noeeprom();
+            break;
+        case RGB_MODE_NONE:
+            rgb_matrix_set_flags(LED_FLAG_NONE);
+            rgb_matrix_set_color_all(0, 0, 0);
+            break;
+    }
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case RGB_TOG:
+            if (record->event.pressed) {
+                switch (rgb_matrix_get_flags()) {
+                    case LED_FLAG_ALL: {
+                        rgb_matrix_set_flags(LED_FLAG_NONE);
+                        rgb_matrix_set_color_all(0, 0, 0);
+                        user_config.rgb_mode = RGB_MODE_NONE;
+                    }
+                    break;
+                    default: {
+                        rgb_matrix_set_flags(LED_FLAG_ALL);
+                        rgb_matrix_enable_noeeprom();
+                        user_config.rgb_mode = RGB_MODE_ALL;
+                    }
+                    break;
+                }
+                eeconfig_update_user(user_config.raw);
+            }
+            return false;
+	}
+    return true;
+}
+
 void rgb_matrix_indicators_user(void) {
-    if (host_keyboard_led_state().caps_lock) {
-        rgb_matrix_set_color(28, 217, 71, 115); // assuming caps lock is at led #40
+    if ((rgb_matrix_get_flags() & LED_FLAG_ALL)) {
+        if (host_keyboard_led_state().caps_lock) {
+            rgb_matrix_set_color(28, 217, 71, 115);
+        }
+
+        if (keymap_config.no_gui) {
+            rgb_matrix_set_color(54, 217, 71, 115);
+            rgb_matrix_set_color(58, 217, 71, 115);
+        }
+    } else {
+        if (host_keyboard_led_state().caps_lock) {
+            rgb_matrix_set_color(28, 217, 71, 115);
+        } else {
+            rgb_matrix_set_color(28, 0, 0, 0);
+        }
+
+        if (keymap_config.no_gui) {
+            rgb_matrix_set_color(54, 217, 71, 115);
+            rgb_matrix_set_color(58, 217, 71, 115);
+        } else {
+            rgb_matrix_set_color(54, 0, 0, 0);
+            rgb_matrix_set_color(58, 0, 0, 0);
+        }
     }
 }
