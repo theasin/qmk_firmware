@@ -752,8 +752,7 @@ ifneq ($(findstring SN32F248BF, $(MCU)),)
   # <keyboard_dir>/boards/, or drivers/boards/
   BOARD ?= SN_SN32F240B
 
-  # BOOTLOADER = flash
-  SN32_BOOTLOADER_ADDRESS = 0x1FFF0301
+  USE_FPU ?= no
 endif
 
 ifneq ($(findstring SN32F268F, $(MCU)),)
