@@ -16,7 +16,6 @@
 
 #include "rev2.h"
 
-#ifdef RGB_MATRIX_ENABLE
 led_config_t g_led_config = { {
     {   0, NO_LED,      1,      2,      3,      4,      5,      6,      7,      8,      9,     10,     11,     12,     13,     14  },
     {  15,     16,     17,     18,     19,     20,     21,     22,     23,     24,     25,     26,     27,     28, NO_LED,     29  },
@@ -39,4 +38,3 @@ led_config_t g_led_config = { {
    1,    4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 4,    4,
    1, 1, 1,          4,          1, 1, 4, 4,    4,
 } };
-#endif
