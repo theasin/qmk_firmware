@@ -20,13 +20,7 @@
 #include "config_led.h"
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0x0C45
-#define PRODUCT_ID      0x5104
-#define DEVICE_VER      0x0001
-
-#define MANUFACTURER    Ajazz
-#define PRODUCT         AK33
-#define DESCRIPTION     AK33 RGB
+#define PRODUCT_ID      0x5001
 
 /* Additional options */
 #define RGB_MATRIX_ENABLE 1
@@ -44,11 +38,3 @@
 
 #define MATRIX_COL_PINS { A0, A1, A2, A3, A4, A5, A6, A7, A14, A15, B0, B1, B2, B3, B4, B10, B11 }
 #define MATRIX_ROW_PINS { D15, D14, D13, D12, D11, D10 }
-
-/* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
-#define DEBOUNCE 5
-
-/* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
-//#define LOCKING_SUPPORT_ENABLE
-/* Locking resynchronize hack */
-//#define LOCKING_RESYNC_ENABLE

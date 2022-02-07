@@ -1,4 +1,4 @@
-/* Copyright 2021 HorrorTroll <https://github.com/HorrorTroll>
+/* Copyright 2021 Adam Honse <https://gitlab.com/CalcProgrammer1>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,10 @@
 
 #pragma once
 
-#define DYNAMIC_KEYMAP_LAYER_COUNT 2
+#include "quantum.h"
 
-#define VIA_QMK_RGBLIGHT_ENABLE
+#if   defined(KEYBOARD_ajazz_ak33_rev1)
+#    include "rev1.h"
+#elif defined(KEYBOARD_ajazz_ak33_rev2)
+#    include "rev2.h"
+#endif

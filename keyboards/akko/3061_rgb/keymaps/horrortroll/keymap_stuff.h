@@ -25,9 +25,9 @@
 #include <lib/lib8tion/lib8tion.h>
 
 enum layer_names {
-    _BASE = 0,
-    _FN = 1,
-    _RN = 2
+    _BASE,
+    _FN,
+    _RN,
 };
 
 // For CUSTOM_GRADIENT
