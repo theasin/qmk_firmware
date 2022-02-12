@@ -1,6 +1,6 @@
 # My personal keymap with VIA and custom LED effect
 
-Keymap is default 61 qwerty 60% layout
+Keymap is default 61 qwerty, 60% layout
 
 It have new LED effect:
 
