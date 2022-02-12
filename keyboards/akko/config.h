@@ -19,7 +19,7 @@
 #include "config_common.h"
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0xA216
+#define VENDOR_ID       0x60A2
 #define DEVICE_VER      0x0001
 #define MANUFACTURER    AKKO
 
