@@ -76,6 +76,8 @@ enum layer_keycodes {
   
     //Custom led effect keycode
     RGB_C_E,             //Cycle user effect
+
+    WIN_LCK,
 };
 
 void keyboard_post_init_user(void) {
@@ -245,6 +247,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     break;
                 }
                 eeconfig_update_user(user_config.raw);
+            }
+            return false;
+        case WIN_LCK:
+            if (record->event.pressed) {
+                keymap_config.no_gui = !keymap_config.no_gui;
+                break;
             }
             return false;
 	}

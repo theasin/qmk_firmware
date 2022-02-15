@@ -40,7 +40,9 @@ typedef union {
 
 user_config_t user_config;
 
-// enum layer_keycodes { };
+enum layer_keycodes {
+    WIN_LCK,
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -96,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 RESET,   _______, KC_UP,   _______,  _______, _______, _______, _______, KC_INS,  _______, KC_PSCR, RGB_VAD, RGB_VAI, RGB_HUI,
                 _______, KC_LEFT, KC_DOWN, KC_RIGHT, _______, _______, _______, _______, _______, RGB_TOG, RGB_SPD, RGB_SPI,          RGB_MOD,
                 _______,          _______, _______,  KC_CALC, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______,          _______,
-                _______, GUI_TOG, _______,                            _______,                             _______, _______, _______, _______
+                _______, WIN_LCK, _______,                            _______,                             _______, _______, _______, _______
             ),
 };
 
@@ -133,6 +135,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     break;
                 }
                 eeconfig_update_user(user_config.raw);
+            }
+            return false;
+        case WIN_LCK:
+            if (record->event.pressed) {
+                keymap_config.no_gui = !keymap_config.no_gui;
+                break;
             }
             return false;
 	}
