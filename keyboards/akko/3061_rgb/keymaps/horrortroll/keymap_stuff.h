@@ -252,28 +252,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void rgb_matrix_indicators_user(void) {
-    switch (get_highest_layer(layer_state)) {
-        case _FN:
-            rgb_matrix_set_color(14, 0, 0, 0); rgb_matrix_set_color(15, 0, 0, 0); rgb_matrix_set_color(17, 0, 0, 0); rgb_matrix_set_color(18, 0, 0, 0);
-            rgb_matrix_set_color(19, 0, 0, 0); rgb_matrix_set_color(20, 0, 0, 0); rgb_matrix_set_color(21, 0, 0, 0); rgb_matrix_set_color(22, 0, 0, 0);
-            rgb_matrix_set_color(23, 0, 0, 0); rgb_matrix_set_color(24, 0, 0, 0); rgb_matrix_set_color(28, 0, 0, 0); rgb_matrix_set_color(32, 0, 0, 0);
-            rgb_matrix_set_color(33, 0, 0, 0); rgb_matrix_set_color(34, 0, 0, 0); rgb_matrix_set_color(35, 0, 0, 0); rgb_matrix_set_color(36, 0, 0, 0);
-            rgb_matrix_set_color(37, 0, 0, 0); rgb_matrix_set_color(38, 0, 0, 0); rgb_matrix_set_color(41, 0, 0, 0); rgb_matrix_set_color(42, 0, 0, 0);
-            rgb_matrix_set_color(43, 0, 0, 0); rgb_matrix_set_color(44, 0, 0, 0); rgb_matrix_set_color(45, 0, 0, 0); rgb_matrix_set_color(46, 0, 0, 0);
-            rgb_matrix_set_color(47, 0, 0, 0); rgb_matrix_set_color(48, 0, 0, 0); rgb_matrix_set_color(49, 0, 0, 0); rgb_matrix_set_color(50, 0, 0, 0);
-            rgb_matrix_set_color(53, 0, 0, 0); rgb_matrix_set_color(55, 0, 0, 0); rgb_matrix_set_color(56, 0, 0, 0); rgb_matrix_set_color(57, 0, 0, 0);
-            rgb_matrix_set_color(59, 0, 0, 0); rgb_matrix_set_color(60, 0, 0, 0);
-            break;
-        case _RN:
-            rgb_matrix_set_color(21, 0, 0, 0); rgb_matrix_set_color(24, 0, 0, 0); rgb_matrix_set_color(28, 0, 0, 0); rgb_matrix_set_color(35, 0, 0, 0);
-            rgb_matrix_set_color(38, 0, 0, 0); rgb_matrix_set_color(39, 0, 0, 0); rgb_matrix_set_color(40, 0, 0, 0); rgb_matrix_set_color(41, 0, 0, 0);
-            rgb_matrix_set_color(45, 0, 0, 0); rgb_matrix_set_color(46, 0, 0, 0); rgb_matrix_set_color(47, 0, 0, 0); rgb_matrix_set_color(50, 0, 0, 0);
-            rgb_matrix_set_color(51, 0, 0, 0); rgb_matrix_set_color(52, 0, 0, 0); rgb_matrix_set_color(53, 0, 0, 0); rgb_matrix_set_color(54, 0, 0, 0);
-            rgb_matrix_set_color(55, 0, 0, 0); rgb_matrix_set_color(56, 0, 0, 0); rgb_matrix_set_color(57, 0, 0, 0); rgb_matrix_set_color(58, 0, 0, 0);
-            rgb_matrix_set_color(59, 0, 0, 0); rgb_matrix_set_color(60, 0, 0, 0);
-            break;
-    }
-
     HSV      hsv = rgb_matrix_config.hsv;
     uint8_t time = scale16by8(g_rgb_timer, qadd8(32, 1));
     hsv.h        = time;
@@ -286,7 +264,6 @@ void rgb_matrix_indicators_user(void) {
 
         if (keymap_config.no_gui) {
             rgb_matrix_set_color(54, rgb.r, rgb.g, rgb.b);
-            rgb_matrix_set_color(58, rgb.r, rgb.g, rgb.b);
         }
     } else {
         if (host_keyboard_led_state().caps_lock) {
@@ -297,10 +274,8 @@ void rgb_matrix_indicators_user(void) {
 
         if (keymap_config.no_gui) {
             rgb_matrix_set_color(54, rgb.r, rgb.g, rgb.b);
-            rgb_matrix_set_color(58, rgb.r, rgb.g, rgb.b);
         } else {
             rgb_matrix_set_color(54, 0, 0, 0);
-            rgb_matrix_set_color(58, 0, 0, 0);
         }
     }
 }
