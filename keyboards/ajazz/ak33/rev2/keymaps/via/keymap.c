@@ -40,7 +40,9 @@ typedef union {
 
 user_config_t user_config;
 
-// enum layer_keycodes { };
+enum layer_keycodes {
+    WIN_LCK,
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
@@ -103,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,          _______,
                 _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_VAI,          KC_PSCR,
-                _______, GUI_TOG, _______,                            _______,                            _______, _______, RGB_HUD, RGB_VAD,          RGB_HUI
+                _______, WIN_LCK, _______,                            _______,                            _______, _______, RGB_HUD, RGB_VAD,          RGB_HUI
             ),
 };
 
@@ -142,16 +144,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 eeconfig_update_user(user_config.raw);
             }
             return false;
+        case WIN_LCK:
+            if (record->event.pressed) {
+                keymap_config.no_gui = !keymap_config.no_gui;
+                break;
+            }
+            return false;
 	}
     return true;
 }
 
 void rgb_matrix_indicators_user(void) {
     if ((rgb_matrix_get_flags() & LED_FLAG_ALL)) {
+        if (host_keyboard_led_state().caps_lock) {
+            rgb_matrix_set_color(45, 255, 0, 0);
+        }
+
         if (keymap_config.no_gui) {
             rgb_matrix_set_color(74, 255, 0, 0);
         }
     } else {
+        if (host_keyboard_led_state().caps_lock) {
+            rgb_matrix_set_color(45, 255, 0, 0);
+        } else {
+            rgb_matrix_set_color(45, 0, 0, 0);
+        }
+
         if (keymap_config.no_gui) {
             rgb_matrix_set_color(74, 255, 0, 0);
         } else {
