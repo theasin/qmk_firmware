@@ -41,7 +41,7 @@ typedef union {
 user_config_t user_config;
 
 enum layer_keycodes {
-    WIN_LCK,
+    GUI_LCK,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -98,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 RESET,   _______, KC_UP,   _______,  _______, _______, _______, _______, KC_INS,  _______, KC_PSCR, RGB_VAD, RGB_VAI, RGB_HUI,
                 _______, KC_LEFT, KC_DOWN, KC_RIGHT, _______, _______, _______, _______, _______, RGB_TOG, RGB_SPD, RGB_SPI,          RGB_MOD,
                 _______,          _______, _______,  KC_CALC, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______,          _______,
-                _______, WIN_LCK, _______,                            _______,                             _______, _______, _______, _______
+                _______, GUI_LCK, _______,                             _______,                            _______, _______, _______, _______
             ),
 };
 
@@ -137,7 +137,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 eeconfig_update_user(user_config.raw);
             }
             return false;
-        case WIN_LCK:
+        case GUI_LCK:
             if (record->event.pressed) {
                 keymap_config.no_gui = !keymap_config.no_gui;
                 break;
@@ -155,6 +155,7 @@ void rgb_matrix_indicators_user(void) {
 
         if (keymap_config.no_gui) {
             rgb_matrix_set_color(54, 217, 71, 115);
+            rgb_matrix_set_color(58, 217, 71, 115);
         }
     } else {
         if (host_keyboard_led_state().caps_lock) {
@@ -165,8 +166,10 @@ void rgb_matrix_indicators_user(void) {
 
         if (keymap_config.no_gui) {
             rgb_matrix_set_color(54, 217, 71, 115);
+            rgb_matrix_set_color(58, 217, 71, 115);
         } else {
             rgb_matrix_set_color(54, 0, 0, 0);
+            rgb_matrix_set_color(58, 0, 0, 0);
         }
     }
 }

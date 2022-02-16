@@ -77,7 +77,7 @@ enum layer_keycodes {
     //Custom led effect keycode
     RGB_C_E,             //Cycle user effect
 
-    WIN_LCK,
+    GUI_LCK,
 };
 
 void keyboard_post_init_user(void) {
@@ -249,7 +249,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 eeconfig_update_user(user_config.raw);
             }
             return false;
-        case WIN_LCK:
+        case GUI_LCK:
             if (record->event.pressed) {
                 keymap_config.no_gui = !keymap_config.no_gui;
                 break;
@@ -272,6 +272,7 @@ void rgb_matrix_indicators_user(void) {
 
         if (keymap_config.no_gui) {
             rgb_matrix_set_color(54, rgb.r, rgb.g, rgb.b);
+            rgb_matrix_set_color(58, rgb.r, rgb.g, rgb.b);
         }
     } else {
         if (host_keyboard_led_state().caps_lock) {
@@ -282,8 +283,10 @@ void rgb_matrix_indicators_user(void) {
 
         if (keymap_config.no_gui) {
             rgb_matrix_set_color(54, rgb.r, rgb.g, rgb.b);
+            rgb_matrix_set_color(58, rgb.r, rgb.g, rgb.b);
         } else {
             rgb_matrix_set_color(54, 0, 0, 0);
+            rgb_matrix_set_color(58, 0, 0, 0);
         }
     }
 }
