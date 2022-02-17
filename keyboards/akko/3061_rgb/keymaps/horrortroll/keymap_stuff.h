@@ -210,12 +210,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 switch (rgb_matrix_get_mode()) {
                     case RGB_MATRIX_CUSTOM_CUSTOM_GRADIENT:
-                        rgb_matrix_mode(RGB_MATRIX_CUSTOM_DIAGONAL);
-                        return false;
-                    case RGB_MATRIX_CUSTOM_DIAGONAL:
                         rgb_matrix_mode(RGB_MATRIX_CUSTOM_COOL_DIAGONAL);
                         return false;
                     case RGB_MATRIX_CUSTOM_COOL_DIAGONAL:
+                        rgb_matrix_mode(RGB_MATRIX_CUSTOM_FLOWER_BLOOMING);
+                        return false;
+                    case RGB_MATRIX_CUSTOM_FLOWER_BLOOMING:
                         rgb_matrix_mode(RGB_MATRIX_CUSTOM_RAINBOW_REACTIVE_SIMPLE);
                         return false;
                     case RGB_MATRIX_CUSTOM_RAINBOW_REACTIVE_SIMPLE:
