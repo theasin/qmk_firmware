@@ -273,9 +273,8 @@ uint8_t matrix_scan(void) {
     return matrix_changed;
 }
 
-uint8_t hw_row_to_matrix_row[18] = { 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5 };
 /**
- * @brief   MR1 interrupt handler.
+ * @brief   CT16B0 interrupt handler.
  *
  * @isr
  */
@@ -298,33 +297,35 @@ OSAL_IRQ_HANDLER(SN32_CT16B0_HANDLER) {
     // Turn the selected row off
     writePinLow(led_row_pins[current_row]);
 
-    // Read the key matrix
-    for (uint8_t col_index = 0; col_index < MATRIX_COLS; col_index++) {
-        // Enable the column
-        writePinLow(col_pins[col_index]);
-
-        for (uint8_t row_index = 0; row_index < MATRIX_ROWS; row_index++) {
-            // Check row pin state
-            if (readPin(row_pins[row_index]) == 0) {
-                // Pin LO, set col bit
-                raw_matrix[row_index] |= (MATRIX_ROW_SHIFTER << col_index);
-            } else {
-                // Pin HI, clear col bit
-                raw_matrix[row_index] &= ~(MATRIX_ROW_SHIFTER << col_index);
-            }
-        }
-
-        // Disable the column
-        for (uint8_t delay_idx = 0; delay_idx < 20; delay_idx++)
-        {
-            writePinHigh(col_pins[col_index]);
-        }
-    }
-
     // Turn the next row on
     current_row = (current_row + 1) % LED_MATRIX_ROWS_HW;
 
-    uint8_t row_idx = hw_row_to_matrix_row[current_row];
+    if(current_row == 0) {
+        // Read the key matrix
+        for (uint8_t col_index = 0; col_index < MATRIX_COLS; col_index++) {
+            // Enable the column
+            writePinLow(col_pins[col_index]);
+
+            for (uint8_t row_index = 0; row_index < MATRIX_ROWS; row_index++) {
+                // Check row pin state
+                if (readPin(row_pins[row_index]) == 0) {
+                    // Pin LO, set col bit
+                    raw_matrix[row_index] |= (MATRIX_ROW_SHIFTER << col_index);
+                } else {
+                    // Pin HI, clear col bit
+                    raw_matrix[row_index] &= ~(MATRIX_ROW_SHIFTER << col_index);
+                }
+            }
+
+            // Disable the column
+            for (uint8_t delay_idx = 0; delay_idx < 20; delay_idx++)
+            {
+                writePinHigh(col_pins[col_index]);
+            }
+        }
+    }
+
+    uint8_t row_idx = ( current_row / 3 );
     uint16_t row_ofst = row_ofsts[row_idx];
 
     //Set timers to the up-counting mode.
