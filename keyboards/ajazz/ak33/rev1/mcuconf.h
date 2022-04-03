@@ -31,7 +31,7 @@
  * 0...3        Lowest...Highest.
  */
 
-#define SN32F24xx_MCUCONF
+#define SN32F24x_MCUCONF
 
 /*
  * HAL driver system settings.
@@ -40,9 +40,6 @@
 /*
  * SN driver system settings.
  */
-#define SN32_CT_IRQ_PRIORITY 2
-#define SN32_CT_USE_TIMER 2
-
 #define SN32_HAS_GPIOA TRUE
 #define SN32_HAS_GPIOB TRUE
 #define SN32_HAS_GPIOC TRUE
@@ -51,28 +48,22 @@
 /*
  * USB driver system settings.
  */
-#define SN32_USB_USE_USB1 TRUE
-#define SN32_USB_LOW_POWER_ON_SUSPEND TRUE
-#define STM32_USB_USB1_HP_IRQ_PRIORITY 13
-#define STM32_USB_USB1_LP_IRQ_PRIORITY 14
-
 #define CRT1_AREAS_NUMBER 1
-
 #define PLATFORM_USB_USE_USB1 TRUE
 
 /*
  * Timer driver system settings.
  */
-#define SN32_PWM_USE_TIM1                  FALSE
-#define SN32_PWM_USE_TIM2                  TRUE
-#define SN32_PWM_TIM1_IRQ_PRIORITY         3
-#define SN32_PWM_TIM2_IRQ_PRIORITY         3
-
 #define SYS_CLOCK_SETUP 1
 #define SYS0_CLKCFG_VAL 0
-#define AHB_PRESCALAR 0x2
+#define EHS_FREQ 10
+#define PLL_MSEL 12
+#define PLL_PSEL 3
+#define PLL_FSEL 0
+#define PLL_CLKIN 1
+#define PLL_ENABLE 0
+#define AHB_PRESCALAR 0x0
 #define CLKOUT_SEL_VAL 0x0
-#define CLKOUT_PRESCALAR 0x0
 
 /*----------------------------------------------------------------------------
   DEFINES
@@ -86,13 +77,13 @@
 /*----------------------------------------------------------------------------
   Define clocks
  *----------------------------------------------------------------------------*/
-#define __IHRC_FREQ 	(12000000UL)
-#define __ILRC_FREQ 	(32000UL)
-#define __ELS_XTAL_FREQ	(32768UL)
+// #define __IHRC_FREQ 	(12000000UL)
+// #define __ILRC_FREQ 	(32000UL)
+// #define __ELS_XTAL_FREQ	(32768UL)
 
-#if (SYS_CLOCK_SETUP)
-#define SYS0_PLLCTRL_VAL	(PLL_ENABLE<<15) | (PLL_CLKIN<<12) | (PLL_FSEL<<8) | (PLL_PSEL<<5) |  PLL_MSEL
-#endif
+// #if (SYS_CLOCK_SETUP)
+// #define SYS0_PLLCTRL_VAL	(PLL_ENABLE<<15) | (PLL_CLKIN<<12) | (PLL_FSEL<<8) | (PLL_PSEL<<5) |  PLL_MSEL
+// #endif
 
 // #endif /* _MCUCONF_H_ */
 
