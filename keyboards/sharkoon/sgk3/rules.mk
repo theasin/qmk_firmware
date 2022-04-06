@@ -1,6 +1,5 @@
 # project specific files
 SRC = ../../../drivers/sn32/matrix_sn32f248.c
-SRC += led_matrix.c
 
 ## chip/board settings
 # - the next two should match the directories in
@@ -58,4 +57,4 @@ CUSTOM_MATRIX = yes
 
 # Custom RGB matrix handling
 RGB_MATRIX_ENABLE = yes
-RGB_MATRIX_DRIVER = custom
+RGB_MATRIX_DRIVER = SN32F248
