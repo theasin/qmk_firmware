@@ -21,7 +21,7 @@
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0x0C45
-#define PRODUCT_ID      0x5104
+#define PRODUCT_ID      0x7903
 #define DEVICE_VER      0x0001
 
 #define MANUFACTURER    Ajazz
@@ -29,11 +29,8 @@
 #define DESCRIPTION     AK33 RGB
 
 /* Additional options */
-#define RGB_MATRIX_ENABLE 1
 #define RGB_MATRIX_KEYPRESSES
-#define RGB_MATRIX_LED_PROCESS_LIMIT 0
-#define RGB_MATRIX_LED_FLUSH_LIMIT 0
-#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 255
+#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 #define RGB_MATRIX_STARTUP_SPD 32
 
 /* Key matrix size */

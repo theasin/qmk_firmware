@@ -28,6 +28,11 @@
 #define PRODUCT         GK530
 #define DESCRIPTION     GK530 Tournament
 
+/* Additional options */
+#define RGB_MATRIX_KEYPRESSES
+#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+#define RGB_MATRIX_STARTUP_SPD 32
+
 /* Key matrix size */
 #define MATRIX_ROWS 6
 #define MATRIX_COLS 17
@@ -39,3 +44,8 @@
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
+
+/* LED Indicator */
+#define LED_CAPS_LOCK_PIN D6
+#define LED_SCROLL_LOCK_PIN D7
+#define LED_PIN_ON_STATE 0

@@ -28,6 +28,11 @@
 #define PRODUCT         GK540
 #define DESCRIPTION     GK540 Magna
 
+/* Additional options */
+#define RGB_MATRIX_KEYPRESSES
+#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+#define RGB_MATRIX_STARTUP_SPD 32
+
 /* Key matrix size */
 #define MATRIX_ROWS 6
 #define MATRIX_COLS 21
@@ -39,3 +44,9 @@
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
+
+/* LED Indicator */
+#define LED_NUM_LOCK_PIN D5
+#define LED_CAPS_LOCK_PIN D6
+#define LED_SCROLL_LOCK_PIN D7
+#define LED_PIN_ON_STATE 0
