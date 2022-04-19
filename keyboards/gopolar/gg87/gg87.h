@@ -48,7 +48,7 @@
 	{ K20, K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A, K2B, K2C, K2D, K2E, K2F, K2G }, \
 	{ K30, K31, K32, K33, K34, K35, K36, K37, K38, K39, K3A, K3B, XXX, K3D, XXX, XXX, XXX }, \
 	{ K40, K41, K42, K43, K44, K45, K46, K47, K48, K49, K4A, K4B, K4C, K4D, XXX, K4F, XXX }, \
-	{ K50, K51, K52, XXX, XXX, K55, XXX, XXX, XXX, XXX, K5A, K5C, K5B, K5D, K5E, K5F, K5G }, \
+	{ K50, K51, K52, XXX, XXX, K55, XXX, XXX, XXX, XXX, K5A, K5B, K5C, K5D, K5E, K5F, K5G }, \
 }
 
 /* ┌───┐   ┌───┬───┬───┬───┐ ┌───┬───┬───┬───┐ ┌───┬───┬───┬───┐ ┌───┬───┬───┐
@@ -80,7 +80,7 @@
 	{ K20, K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A, K2B, K2C, K2D, K2E, K2F, K2G }, \
 	{ K30, K31, K32, K33, K34, K35, K36, K37, K38, K39, K3A, K3B, XXX, K3D, XXX, XXX, XXX }, \
 	{ K40, XXX, K42, K43, K44, K45, K46, K47, K48, K49, K4A, K4B, K4C, XXX, XXX, K4F, XXX }, \
-	{ K50, K51, K52, XXX, XXX, K55, XXX, XXX, XXX, XXX, K5A, K5C, K5B, K5D, K5E, K5F, K5G }, \
+	{ K50, K51, K52, XXX, XXX, K55, XXX, XXX, XXX, XXX, K5A, K5B, K5C, K5D, K5E, K5F, K5G }, \
 }
 
 /* ┌───┐   ┌───┬───┬───┬───┐ ┌───┬───┬───┬───┐ ┌───┬───┬───┬───┐ ┌───┬───┬───┐
@@ -112,5 +112,5 @@
 	{ K20, K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A, K2B, K2C, K2D, K2E, K2F, K2G }, \
 	{ K30, K31, K32, K33, K34, K35, K36, K37, K38, K39, K3A, K3B, XXX, K3D, XXX, XXX, XXX }, \
 	{ K40, K41, K42, K43, K44, K45, K46, K47, K48, K49, K4A, K4B, K4C, XXX, XXX, K4F, XXX }, \
-	{ K50, K51, K52, XXX, XXX, K55, XXX, XXX, XXX, XXX, K5A, K5C, K5B, K5D, K5E, K5F, K5G }, \
+	{ K50, K51, K52, XXX, XXX, K55, XXX, XXX, XXX, XXX, K5A, K5B, K5C, K5D, K5E, K5F, K5G }, \
 }

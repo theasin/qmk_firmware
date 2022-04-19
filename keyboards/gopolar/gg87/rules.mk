@@ -30,3 +30,5 @@ RGB_MATRIX_DRIVER = WS2812
 # OLED enabled
 OLED_ENABLE = yes
 OLED_DRIVER = SSD1306       # OLED display
+
+LAYOUTS = tkl_ansi tkl_iso
