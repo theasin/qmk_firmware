@@ -1,5 +1,5 @@
 # project specific files
-SRC = ../../../drivers/sn32/matrix_sn32f248.c
+SRC = ../../../drivers/sn32/matrix_sn32f248_new.c
 SRC += config_led.c
 
 ## chip/board settings

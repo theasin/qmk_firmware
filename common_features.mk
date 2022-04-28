@@ -262,7 +262,7 @@ endif
 
     ifeq ($(strip $(RGB_MATRIX_DRIVER)), SN32F248)
         COMMON_VPATH += $(DRIVER_PATH)/sn32
-        SRC += rgb_matrix_sn32f248.c
+        SRC += rgb_matrix_sn32f248_new.c
     endif    
 
     ifeq ($(strip $(RGB_MATRIX_DRIVER)), SN32F248B)
