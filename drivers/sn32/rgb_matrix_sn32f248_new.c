@@ -60,7 +60,7 @@ static const pin_t led_col_pins[LED_MATRIX_COLS] = LED_MATRIX_COL_PINS;
 RGB led_state[DRIVER_LED_TOTAL]; // led state buffer
 bool enable_pwm = false;
 
-/* PWM configuration structure. We use timer CT16B1 with 24 channels. */
+/* PWM configuration structure. We use timer CT16B0, CT16B1, CT16B2, CT32B0, CT32B1, CT32B2, total 21 channels. */
 static PWMConfig pwmcfg = {
     freq,          /* PWM clock frequency. */
     256,           /* PWM period (in ticks) 1S (1/10kHz=0.1mS 0.1ms*10000 ticks=1S) */
@@ -278,7 +278,12 @@ void rgb_callback(PWMDriver *pwmp) {
     if(enable_pwm) writePinHigh(led_row_pins[current_row]);
     chSysUnlockFromISR();
     // Advance the timer to just before the wrap-around, that will start a new PWM cycle
-    pwm_lld_change_counter(pwmp, 0xFFFF);
+    pwm_lld_change_counter(&PWMD1, 0xFFFF);
+    pwm_lld_change_counter(&PWMD2, 0xFFFF);
+    pwm_lld_change_counter(&PWMD3, 0xFFFF);
+    pwm_lld_change_counter(&PWMD4, 0xFFFFFFFF);
+    pwm_lld_change_counter(&PWMD5, 0xFFFFFFFF);
+    pwm_lld_change_counter(&PWMD6, 0xFFFFFFFF);
     // Enable the interrupt
     pwmEnablePeriodicNotification(pwmp);
 }
