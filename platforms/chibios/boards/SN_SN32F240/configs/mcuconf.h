@@ -61,8 +61,13 @@
  */
 #define SYS_CLOCK_SETUP 1
 #define SYS0_CLKCFG_VAL 0
-#define AHB_PRESCALAR 0x2
+#define EHS_FREQ 10
+#define PLL_MSEL 12
+#define PLL_PSEL 3
+#define PLL_FSEL 0
+#define PLL_CLKIN 1
+#define PLL_ENABLE 0
+#define AHB_PRESCALAR 0x0
 #define CLKOUT_SEL_VAL 0x0
-#define CLKOUT_PRESCALAR 0x0
 
 #endif /* MCUCONF_H */
