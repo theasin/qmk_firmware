@@ -1,7 +1,20 @@
-#ifdef RGB_MATRIX_ENABLE
+/* Copyright 2022 HorrorTroll <https://github.com/HorrorTroll>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-#include "rgb_matrix.h"
-#include "config_led.h"
+#include "gk530.h"
 
 led_config_t g_led_config = { {
     {  0,      1,      2,      3,      4,      5,      6,      7,      8,      9,     10,     11,     12, NO_LED,     13,     14,     15 },
@@ -18,12 +31,10 @@ led_config_t g_led_config = { {
     {8  , 52},            {29 , 52}, {42 , 52}, {55 , 52}, {68 , 52}, {81 , 52}, {94 , 52}, {107, 52}, {120, 52}, {133, 52}, {146, 52},            {170, 52},            {211, 52},
     {2  , 64}, {18 , 64}, {34 , 64}, {83 , 64}, {131, 64}, {148, 64}, {164, 64},            {180, 64},                                                        {198, 64}, {211, 64}, {224, 64},
 }, {
-   4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,    4, 4, 4,
-   4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-   4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-   4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,    4,
-   4,    4, 4, 4, 4, 4, 4, 4, 4, 4, 4,    4,    4,
-   4, 4, 4, 4, 4, 4, 4,    4,                4, 4, 4,
+   1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,    4, 4, 4,
+   4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 4, 4, 4,
+   1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+   8, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,    1,
+   1,    4, 4, 4, 4, 4, 4, 4, 4, 4, 4,    1,    4,
+   1, 1, 1, 4, 1, 1, 1,    1,                4, 4, 4,
 } };
-
-#endif
