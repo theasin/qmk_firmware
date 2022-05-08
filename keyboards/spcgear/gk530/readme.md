@@ -1,6 +1,6 @@
 # SPCGear GK530 Tournament
 
-![GK530 Tournament](https://i.imgur.com/X9qO3WR.png)
+![GK530 Tournament](https://i.imgur.com/LTxOTMZ.png)
 
 A tenkeyless 87-key keyboard made by SPCGear, which controlled by an SN32F248F chipset. The keyboard features per-key RGB.
 

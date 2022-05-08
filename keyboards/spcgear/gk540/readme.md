@@ -1,6 +1,6 @@
 # SPCGear GK540 Magna
 
-![GK540 Magna](https://i.imgur.com/Zo4Hnbn.png)
+![GK540 Magna](https://i.imgur.com/n0cMcMc.png)
 
 A full-size 104-key keyboard made by SPCGear, which controlled by an SN32F248F chipset. The keyboard features per-key RGB.
 
