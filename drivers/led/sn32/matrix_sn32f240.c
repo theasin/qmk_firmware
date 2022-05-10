@@ -682,26 +682,26 @@ OSAL_IRQ_HANDLER(SN32_CT16B0_HANDLER) {
     if(SN_CT16B0->MR2 > 0)
     {
         new_pwm_ct16 |=
-            (mskCT16_PWM0EN_EN \
-            |mskCT16_PWM0IOEN_EN);
+            (mskCT16_PWM2EN_EN \
+            |mskCT16_PWM2IOEN_EN);
     }
     if(SN_CT32B1->MR0 > 0)
-    {
-        new_pwm_ct32 |=
-            (mskCT32_PWM1EN_EN \
-            |mskCT32_PWM1IOEN_EN);
-    }
-    if(SN_CT32B0->MR2 > 0)
     {
         new_pwm_ct32 |=
             (mskCT32_PWM0EN_EN \
             |mskCT32_PWM0IOEN_EN);
     }
+    if(SN_CT32B0->MR2 > 0)
+    {
+        new_pwm_ct32 |=
+            (mskCT32_PWM2EN_EN \
+            |mskCT32_PWM2IOEN_EN);
+    }
     if(SN_CT16B1->MR0 > 0)
     {
         new_pwm_ct16 |=
-            (mskCT16_PWM1EN_EN \
-            |mskCT16_PWM1IOEN_EN);
+            (mskCT16_PWM0EN_EN \
+            |mskCT16_PWM0IOEN_EN);
     }
 
     SN_CT16B0->PWMCTRL = pwm_msk_ct16 & new_pwm_ct16;
