@@ -113,7 +113,7 @@
                 {"label":"\u2193", "x":16.25, "y":5.5},
                 {"label":"\u2192", "x":17.25, "y":5.5},
                 {"label":"Keypad 0", "x":18.5, "y":5.5, "w":2},
-                {"label":"Keypad ,", "x":20.5, "y":5.5}
+                {"label":"Keypad .", "x":20.5, "y":5.5}
             ]
         }
         "LAYOUT_fullsize_abnt2": {
@@ -176,7 +176,7 @@
                 {"label":"Keypad 7", "x":18.5, "y":2.5},
                 {"label":"Keypad 8", "x":19.5, "y":2.5},
                 {"label":"Keypad 9", "x":20.5, "y":2.5},
-                {"label":"Keypad +", "x":21.5, "y":2.5, "h":2},
+                {"label":"Keypad +", "x":21.5, "y":2.5},
 
                 {"label":"Caps Lock", "x":0, "y":3.5, "w":1.75},
                 {"label":"A", "x":1.75, "y":3.5},
@@ -195,6 +195,7 @@
                 {"label":"Keypad 4", "x":18.5, "y":3.5},
                 {"label":"Keypad 5", "x":19.5, "y":3.5},
                 {"label":"Keypad 6", "x":20.5, "y":3.5},
+                {"label":"Keypad .", "x":21.5, "y":3.5},
 
                 {"label":"Shift", "x":0, "y":4.5, "w":1.25},
                 {"label":"ISO \\", "x":1.25, "y":4.5},
@@ -342,7 +343,7 @@
                 {"label":"\u2193", "x":16.25, "y":5.5},
                 {"label":"\u2192", "x":17.25, "y":5.5},
                 {"label":"Keypad 0", "x":18.5, "y":5.5, "w":2},
-                {"label":"Keypad ,", "x":20.5, "y":5.5}
+                {"label":"Keypad .", "x":20.5, "y":5.5}
             ]
         }
     }
