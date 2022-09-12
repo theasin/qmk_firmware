@@ -112,7 +112,15 @@ ifeq ($(strip $(BOOTLOADER)), wb32-dfu)
     OPT_DEFS += -DBOOTLOADER_WB32_DFU
     BOOTLOADER_TYPE = wb32_dfu
 endif
+ifeq ($(strip $(BOOTLOADER)), at32-dfu)
+    OPT_DEFS += -DBOOTLOADER_AT32_DFU
+    BOARD = GENERIC_AT32_F403AXX
+    BOOTLOADER_TYPE = at32_dfu
 
+    # Options to pass to dfu-util when flashing
+    DFU_ARGS = -d 2E3C:DF11 -a 0 -s 0x08000000:leave
+    DFU_SUFFIX_ARGS = -v 2E3C -p DF11
+endif
 ifeq ($(strip $(BOOTLOADER_TYPE)),)
     ifneq ($(strip $(BOOTLOADER)),)
         $(call CATASTROPHIC_ERROR,Invalid BOOTLOADER,Invalid bootloader specified. Please set an appropriate bootloader in your rules.mk or info.json.)
