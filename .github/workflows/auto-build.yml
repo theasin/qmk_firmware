@@ -9,6 +9,7 @@ on:
     branches:
     - sn32
     - sn32_openrgb
+  workflow_dispatch:
 
 jobs:
   Build:
